@@ -7,3 +7,7 @@ body {
 td{
   margin: 7px ;
 }
+
+.clickable{
+  cursor: pointer;
+}
