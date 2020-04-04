@@ -1,10 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import Form from "./common/form";
-import Input from "./common/input";
 
-class LoginForm extends Form {
-  username = React.createRef();
-
+class RegisterForm extends Form {
   state = {
     data: { username: "", password: "" },
     errors: {},
@@ -14,19 +11,19 @@ class LoginForm extends Form {
     console.log("Submitted");
   };
 
-  render() {
-    const { data, errors } = this.state;
+    render() {
     return (
       <div>
-        <h1>Login</h1>
+        <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderButton("Login")}
+          {this.renderInput("name", "Name")}
+          {this.renderButton("Register")}
         </form>
       </div>
     );
   }
 }
 
-export default LoginForm;
+export default RegisterForm;
