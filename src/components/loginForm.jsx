@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Form from "./common/form";
-import Input from "./common/input";
+import auth from "../services/authService";
 
 class LoginForm extends Form {
   username = React.createRef();
@@ -10,8 +10,18 @@ class LoginForm extends Form {
     errors: {},
   };
 
-  doSubmit = () => {
-    console.log("Submitted");
+  doSubmit = async () => {
+    try {
+      const { data } = this.state;
+      await auth.login(data.username, data.password);
+      window.location = "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        const errors = { ...this.state.errors };
+        errors.username = ex.response.data;
+        this.setState({ errors });
+      }
+    }
   };
 
   render() {
